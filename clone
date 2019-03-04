@@ -1,0 +1,11 @@
+#!/bin/bash
+OUTSIDE_THE_VM=$(which vagrant)
+if [[ "$OUTSIDE_THE_VM" == "" ]]; then
+    set -ex
+    cd /vagrant
+    git clone https://github.com/micropython/micropython
+    cd micropython
+    git submodule update --init
+else
+    vagrant ssh -c "clone"
+fi

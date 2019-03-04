@@ -1,0 +1,7 @@
+ecdsa==0.13
+esptool==2.6
+pyaes==1.6.1
+pyserial==3.4
+pyudev==0.21.0
+rshell==0.0.18
+six==1.12.0

@@ -1,0 +1,9 @@
+#!/bin/bash
+CMD=$1
+shift
+OUTSIDE_THE_VM=$(which vagrant)
+if [[ "$OUTSIDE_THE_VM" == "" ]]; then
+    /vagrant/micropython/ports/unix/micropython -m upip $CMD -p /vagrant/micropython/ports/esp8266/modules $@
+else
+    vagrant ssh -c "upip $CMD $@"
+fi

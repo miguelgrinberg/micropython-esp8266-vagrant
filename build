@@ -1,0 +1,11 @@
+#!/bin/bash
+OUTSIDE_THE_VM=$(which vagrant)
+if [[ "$OUTSIDE_THE_VM" == "" ]]; then
+    set -ex
+    cd /vagrant/micropython
+    make -C mpy-cross
+    make -C ports/unix
+    make -C ports/esp8266
+else
+    vagrant ssh -c "build"
+fi
