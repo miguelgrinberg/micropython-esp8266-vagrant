@@ -1,9 +1,12 @@
 #!/bin/bash
 CMD=$1
 shift
-OUTSIDE_THE_VM=$(which vagrant)
-if [[ "$OUTSIDE_THE_VM" == "" ]]; then
+HAVE_VAGRANT=$(which vagrant)
+if [[ "$HAVE_VAGRANT" == "" ]]; then
+    # we are running inside the Vagrant VM
     /vagrant/micropython/ports/unix/micropython -m upip $CMD -p /vagrant/micropython/ports/esp8266/modules $@
 else
+    # we are running outside the Vagrant VM
+    # run the same command in the VM
     vagrant ssh -c "upip $CMD $@"
 fi
